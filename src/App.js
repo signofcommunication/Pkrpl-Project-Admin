@@ -1,4 +1,4 @@
-import { Login, Dashboard, Private } from "./components";
+import { Login, Dashboard, Private, Post } from "./components";
 import { Route, Routes } from "react-router-dom";
 
 function App() {
@@ -7,7 +7,7 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route exact path="/" element={<Private />}>
         <Route exact path="/" element={<Dashboard />} />
-        <Route exact path="/add-product" element={<h1>Add</h1>} />
+        <Route exact path="/add-product" element={<Post />} />
       </Route>
     </Routes>
   );
