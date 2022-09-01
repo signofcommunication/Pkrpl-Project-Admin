@@ -5,9 +5,6 @@ import axios from "axios";
 import "../styles/Dashboard/styles";
 
 function Dashboard() {
-  const [price, setPrice] = useState(0);
-  const [title, setTitle] = useState("");
-  const [categories, setCategories] = useState("");
   const [datas, setDatas] = useState([]);
 
   async function getAllData() {

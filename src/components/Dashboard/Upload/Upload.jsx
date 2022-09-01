@@ -8,10 +8,9 @@ export default function Upload() {
   const maxNumber = 69;
 
   const onChange = (imageList, addUpdateIndex) => {
-    // data for submit
-    // console.log(imageList, addUpdateIndex);
     setImages(imageList);
-    setImagesCollection(imageList);
+    const res = imageList.map(i => i.data_url);
+    setImagesCollection(res);
   };
 
   return (
