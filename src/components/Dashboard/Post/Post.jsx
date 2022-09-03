@@ -1,29 +1,28 @@
 import { useProvider } from "../../../utils/FirebaseProvider";
-import { Paper, Box, TextField } from "@mui/material";
+import { Paper, Box, TextField, Button } from "@mui/material";
 import { useState } from "react";
 import Upload from "../Upload/Upload";
 import Navbar from "./Navbar/Navbar";
 import axios from "axios";
+import FileBase64 from "react-file-base64";
 
 function Post() {
   const [price, setPrice] = useState(0);
   const [title, setTitle] = useState("");
   const [categories, setCategories] = useState("");
-  const { imagesCollection } = useProvider();
+  const { setImagesCollection, imagesCollection } = useProvider();
 
   console.log(imagesCollection);
 
-  async function handleUpload(e) {
-    e.preventDefault();
-
+  async function handleUpload() {
     try {
-      const data = imagesCollection.map(i => i.data_url);
+      const data = imagesCollection.map(i => i.base64);
       console.log(data);
       axios.post("http://localhost:8000/products", {
-        price: +price,
         title,
+        price: +price,
         categories,
-        data,
+        images: data,
       });
       console.log("Document Uploaded Successfully");
     } catch (error) {
@@ -69,9 +68,14 @@ function Post() {
             value={categories}
             onChange={e => setCategories(e.target.value)}
           />
+          <FileBase64
+            type="file"
+            multiple={true}
+            onDone={base64 => setImagesCollection(base64)}
+          />
+          <Button onClick={handleUpload}>Upload</Button>
         </Paper>
       </Box>
-      <Upload />
     </>
   );
 }

@@ -11,7 +11,20 @@ async function getAllProducts(req, res) {
 }
 
 async function getSingleProduct(req, res) {
-  res.send("getSingleProduct");
+  try {
+    const { id } = req.params;
+    const product = await Store.findOne({ _id: id });
+
+    if (!product) {
+      res
+        .status(StatusCodes.NOT_FOUND)
+        .json({ message: `There is no product with id ${id}` });
+    }
+
+    res.status(StatusCodes.OK).json({ product });
+  } catch (e) {
+    // res.
+  }
 }
 
 async function createProduct(req, res) {
@@ -24,11 +37,22 @@ async function createProduct(req, res) {
 }
 
 async function editProduct(req, res) {
-  res.send("editProduct");
+  try {
+    const { id } = req.params;
+    const editProduct = await Store.findByIdAndUpdate({ _id: id }, req.body, {
+      new: true,
+      runValidators: true,
+    });
+
+    res.status(StatusCodes.OK).json({ product: editProduct });
+  } catch (e) {
+    console.log(e);
+  }
 }
 
 async function deleteProduct(req, res) {
-  res.send("deleteProduct");
+  try {
+  } catch (error) {}
 }
 
 export {
