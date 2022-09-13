@@ -23,7 +23,7 @@ async function getSingleProduct(req, res) {
 
     res.status(StatusCodes.OK).json({ product });
   } catch (e) {
-    // res.
+    res.StatusCodes(StatusCodes.BAD_REQUEST).json({ message: e.message });
   }
 }
 

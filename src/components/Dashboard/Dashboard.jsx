@@ -1,3 +1,4 @@
+import { Grid } from "@mui/material";
 import { useState, useEffect } from "react";
 import Navbar from "./Navbar/Navbar";
 import Card from "./Card/Card";
@@ -19,13 +20,39 @@ function Dashboard() {
   }
 
   useEffect(() => {
-    getAllData();
+    // getAllData();
   }, []);
 
   return (
     <>
       <Navbar />
-      <Card />
+      <Grid
+        container
+        direction="row"
+        justifyContent="center"
+        alignItems="center"
+        spacing={4}
+        // style={{ backgroundColor: "#000" }}
+      >
+        <Grid item xs={2} sm={4} md={4} alignItems="center" justify="center">
+          <Card />
+        </Grid>
+        <Grid item xs={2} sm={4} md={4} alignItems="center" justify="center">
+          <Card />
+        </Grid>
+        <Grid item xs={2} sm={4} md={4} alignItems="center" justify="center">
+          <Card />
+        </Grid>
+        <Grid item xs={2} sm={4} md={4} alignItems="center" justify="center">
+          <Card />
+        </Grid>
+        <Grid item xs={2} sm={4} md={4} alignItems="center" justify="center">
+          <Card />
+        </Grid>
+        <Grid item xs={2} sm={4} md={4} alignItems="center" justify="center">
+          <Card />
+        </Grid>
+      </Grid>
     </>
   );
 }
