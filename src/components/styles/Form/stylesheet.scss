@@ -1,0 +1,24 @@
+.paper-container {
+    padding: 20px;
+    margin: 20px 0;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+
+    * {
+        margin: 20px 0;
+    }
+}
+
+.text {
+    text-align: center;
+}
+
+.upload-image {
+    border: 5px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
