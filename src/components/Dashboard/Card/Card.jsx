@@ -8,21 +8,21 @@ import {
   Typography,
 } from "@mui/material";
 
-export default function MediaCard() {
+export default function MediaCard({ title, price, image }) {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
         component="img"
         height="140"
-        image="https://source.unsplash.com/random"
+        image={image}
         alt="green iguana"
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          Lizard
+          {title}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Rp.200.000
+          Rp{price.toLocaleString("id-ID")}
         </Typography>
       </CardContent>
       <CardActions>
