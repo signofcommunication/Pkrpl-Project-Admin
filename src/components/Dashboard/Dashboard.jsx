@@ -1,5 +1,6 @@
 import { Grid, Container, CircularProgress } from "@mui/material";
 import { useState, useEffect } from "react";
+import { useProvider } from "../../utils/FirebaseProvider";
 import Navbar from "./Navbar/Navbar";
 import Card from "./Card/Card";
 import axios from "axios";
@@ -7,14 +8,20 @@ import "../styles/Dashboard/styles";
 
 function Dashboard() {
   const [datas, setDatas] = useState([]);
+  const [d, setD] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { getSingleProduct } = useProvider();
 
   async function getAllData() {
     try {
       const {
         data: { products },
       } = await axios.get("http://localhost:8000/products");
+      const { data: product } = await getSingleProduct(
+        "6321c0750452f286223efac9"
+      );
       setDatas(products);
+      setD(product);
       setLoading(false);
     } catch (e) {
       console.log(e);
@@ -25,7 +32,7 @@ function Dashboard() {
     getAllData();
   }, []);
 
-  console.log(datas);
+  console.log({ datas, d });
 
   return (
     <>

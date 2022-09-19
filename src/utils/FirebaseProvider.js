@@ -6,6 +6,7 @@ import {
 } from "firebase/auth";
 import { createContext, useContext, useState, useEffect } from "react";
 import { app } from "./firebase";
+import { getSingleProduct as singleProduct } from "../api";
 
 const FirebaseContext = createContext();
 
@@ -19,7 +20,19 @@ function FirebaseProvider({ children }) {
     return signInWithEmailAndPassword(auth, email, password);
   }
 
-  const value = { login, user, error, imagesCollection, setImagesCollection };
+  async function getSingleProduct(id) {
+    const data = await singleProduct(id);
+    return data;
+  }
+
+  const value = {
+    login,
+    user,
+    error,
+    imagesCollection,
+    setImagesCollection,
+    getSingleProduct,
+  };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(getAuth(), setUser, setError);
