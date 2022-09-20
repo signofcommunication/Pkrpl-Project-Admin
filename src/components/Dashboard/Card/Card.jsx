@@ -7,8 +7,9 @@ import {
   Button,
   Typography,
 } from "@mui/material";
+import { Link } from "react-router-dom";
 
-export default function MediaCard({ title, price, image }) {
+export default function MediaCard({ title, price, image, link }) {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
@@ -26,9 +27,14 @@ export default function MediaCard({ title, price, image }) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small" variant="contained">
-          Edit
-        </Button>
+        <Link
+          to={`/product/${link}`}
+          style={{ marginRight: "10px", textDecoration: "none" }}
+        >
+          <Button size="small" variant="contained">
+            Detail
+          </Button>
+        </Link>
         <Button size="small" variant="contained" color="error">
           Delete
         </Button>

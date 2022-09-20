@@ -13,9 +13,8 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 
 function Navbar() {
   const [anchorEl, setAnchorEl] = useState(null);
-  // const navigate = useNavigate();
 
-  const handleMenu = event => {
+  const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
 

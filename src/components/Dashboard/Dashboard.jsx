@@ -51,12 +51,13 @@ function Dashboard() {
               <CircularProgress />
             </Grid>
           ) : (
-            datas?.map((data) => (
-              <Grid item xs={2} sm={4} md={4}>
+            datas?.map((data, i) => (
+              <Grid item xs={2} sm={4} md={4} key={i}>
                 <Card
                   title={data.title}
                   price={+data.price}
                   image={data.images[0]}
+                  link={data._id}
                 />
               </Grid>
             ))

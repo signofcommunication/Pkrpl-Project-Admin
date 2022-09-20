@@ -1,4 +1,4 @@
-import { Login, Dashboard, Private, Post } from "./components";
+import { Login, Dashboard, Private, Post, Detail } from "./components";
 import { Route, Routes } from "react-router-dom";
 
 function App() {
@@ -8,6 +8,12 @@ function App() {
       <Route exact path="/" element={<Private />}>
         <Route exact path="/" element={<Dashboard />} />
         <Route exact path="/add-product" element={<Post />} />
+        <Route exact path="/product/:productId" element={<Detail />} />
+        <Route
+          exact
+          path="/product/:productId/edit"
+          element={<h1>Edit Product</h1>}
+        />
       </Route>
     </Routes>
   );
