@@ -12,8 +12,10 @@ function Navbar({ id }) {
               <ArrowBack />
             </IconButton>
           </Link>
-          <Link to={`/product/${id}/edit`} /*style={{ text }}*/>
-            <Button variant="outlined">Edit</Button>
+          <Link to={`/product/${id}/edit`} style={{ textDecoration: "none" }}>
+            <Button color="success" variant="contained">
+              Edit
+            </Button>
           </Link>
         </Toolbar>
       </AppBar>

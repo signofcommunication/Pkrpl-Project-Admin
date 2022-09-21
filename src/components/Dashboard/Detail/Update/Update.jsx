@@ -1,8 +1,16 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import Navbar from "./Navbar";
 
 function Update() {
-  return <div>Update</div>;
+  const { productId } = useParams();
+
+  return (
+    <>
+      <Navbar />
+      <div>Update with id : {productId}</div>
+    </>
+  );
 }
 
 export default Update;

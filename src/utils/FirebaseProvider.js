@@ -13,6 +13,7 @@ const FirebaseContext = createContext();
 function FirebaseProvider({ children }) {
   const [user, setUser] = useState();
   const [error, setError] = useState();
+  const [updateId, setUpdateId] = useState();
   const [imagesCollection, setImagesCollection] = useState([]);
   const auth = getAuth();
 
@@ -32,6 +33,8 @@ function FirebaseProvider({ children }) {
     imagesCollection,
     setImagesCollection,
     getSingleProduct,
+    updateId,
+    setUpdateId,
   };
 
   useEffect(() => {
