@@ -5,7 +5,7 @@ import {
   Typography,
   Grid,
   Container,
-  Paper,
+  Button,
   CircularProgress,
 } from "@mui/material";
 import Navbar from "./Navbar";
@@ -15,6 +15,7 @@ function Detail() {
   const [data, setData] = useState([]);
   const { getSingleProduct, setUpdateId } = useProvider();
   const { productId } = useParams();
+  const price = +data.price.toLocaleString();
 
   useEffect(() => {
     async function fetchProduct() {
@@ -47,7 +48,16 @@ function Detail() {
               <Image src={data?.images} />
             </Grid>
             <Grid item md={6}>
-              ok
+              <Typography variant="h2" component="h2">
+                {data?.title}
+              </Typography>
+              <Typography
+                variant="h5"
+                component="h5"
+                style={{ margin: "20px 0" }}
+              >
+                Rp{price}
+              </Typography>
             </Grid>
           </Grid>
         </Container>
