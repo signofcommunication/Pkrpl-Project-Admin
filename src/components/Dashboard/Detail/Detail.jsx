@@ -15,7 +15,7 @@ function Detail() {
   const [data, setData] = useState([]);
   const { getSingleProduct, setUpdateId } = useProvider();
   const { productId } = useParams();
-  const price = +data.price.toLocaleString();
+  // const price = +data.price.toLocaleString();
 
   useEffect(() => {
     async function fetchProduct() {
@@ -56,7 +56,7 @@ function Detail() {
                 component="h5"
                 style={{ margin: "20px 0" }}
               >
-                Rp{price}
+                Rp{data?.price && data?.price.toLocaleString()}
               </Typography>
             </Grid>
           </Grid>
