@@ -6,7 +6,10 @@ import {
 } from "firebase/auth";
 import { createContext, useContext, useState, useEffect } from "react";
 import { app } from "./firebase";
-import { getSingleProduct as singleProduct } from "../api";
+import {
+  getSingleProduct as singleProduct,
+  updateProduct as updateProd,
+} from "../api";
 
 const FirebaseContext = createContext();
 
@@ -26,6 +29,10 @@ function FirebaseProvider({ children }) {
     return data;
   }
 
+  async function updateProduct(id, data) {
+    await updateProd(id, data);
+  }
+
   const value = {
     login,
     user,
@@ -35,6 +42,7 @@ function FirebaseProvider({ children }) {
     getSingleProduct,
     updateId,
     setUpdateId,
+    updateProduct,
   };
 
   useEffect(() => {

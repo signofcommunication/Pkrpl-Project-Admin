@@ -12,14 +12,21 @@ import {
 } from "@mui/material";
 import FileBase64 from "react-file-base64";
 import Navbar from "./Navbar";
+import axios from "axios";
 
 function Update() {
   const [price, setPrice] = useState();
   const [title, setTitle] = useState("");
   const [categories, setCategories] = useState("");
   const [data, setData] = useState([]);
-  const { getSingleProduct, setImagesCollection } = useProvider();
+  const {
+    getSingleProduct,
+    setImagesCollection,
+    updateProduct,
+    imagesCollection,
+  } = useProvider();
   const { productId } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     getProduct();
@@ -32,6 +39,18 @@ function Update() {
     setTitle(res?.data.product.title);
     setPrice(res?.data.product.price);
     setCategories(res?.data.product.categories);
+  }
+
+  function handleUpload() {
+    const data = imagesCollection.map((i) => i.base64);
+    axios.patch(`http://localhost:8000/products/${productId}`, {
+      title,
+      price: parseInt(price),
+      categories,
+      images: data,
+    });
+    alert(`Product Updated with id:${productId} was updated successfully`);
+    navigate(`/product/${productId}`);
   }
 
   console.log(data);
@@ -57,7 +76,7 @@ function Update() {
                     gutterBottom
                     className="text"
                   >
-                    Upload a product
+                    Update a product
                   </Typography>
                   <TextField
                     required
@@ -80,8 +99,8 @@ function Update() {
                     value={categories}
                     onChange={(e) => setCategories(e.target.value)}
                   />
-                  <Button variant="contained" /*onClick={handleUpload}*/>
-                    Upload
+                  <Button variant="contained" onClick={handleUpload}>
+                    Update
                   </Button>
                 </form>
               </Paper>
@@ -95,7 +114,7 @@ function Update() {
               <FileBase64
                 type="file"
                 multiple={true}
-                // onDone={(base64) => setImagesCollection(base64)}
+                onDone={(base64) => setImagesCollection(base64)}
               />
             </Grid>
           </Grid>

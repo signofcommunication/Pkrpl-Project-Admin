@@ -6,4 +6,12 @@ async function getSingleProduct(id) {
   return axios.get(`${url}/${id}`);
 }
 
-export { getSingleProduct };
+async function getAllProducts() {
+  return axios.get(`${url}`);
+}
+
+async function updateProduct(id, updatedData) {
+  return axios.patch(`${url}/${id}`, updatedData);
+}
+
+export { getSingleProduct, getAllProducts, updateProduct };

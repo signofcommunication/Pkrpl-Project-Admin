@@ -47,6 +47,7 @@ async function editProduct(req, res) {
 
     res.status(StatusCodes.OK).json({ product: editProduct });
   } catch (e) {
+    console.log(e);
     res.status(StatusCodes.BAD_REQUEST).json({ error: e.message });
   }
 }
