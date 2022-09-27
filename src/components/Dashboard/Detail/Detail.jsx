@@ -1,5 +1,5 @@
 import { useEffect, useState, Fragment } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useProvider } from "../../../utils/FirebaseProvider";
 import {
   Typography,
@@ -58,6 +58,12 @@ function Detail() {
               >
                 Rp{data?.price && data?.price.toLocaleString()}
               </Typography>
+              <Link
+                to={`/product/${productId}/edit`}
+                style={{ textDecoration: "none" }}
+              >
+                <Button variant="contained">Edit</Button>
+              </Link>
             </Grid>
           </Grid>
         </Container>

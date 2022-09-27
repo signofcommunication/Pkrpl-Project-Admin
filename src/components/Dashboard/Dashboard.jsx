@@ -1,4 +1,4 @@
-import { Grid, Container, CircularProgress } from "@mui/material";
+import { Grid, Container, CircularProgress, Typography } from "@mui/material";
 import { useState, useEffect } from "react";
 import { useProvider } from "../../utils/FirebaseProvider";
 import Navbar from "./Navbar/Navbar";
@@ -54,6 +54,7 @@ function Dashboard() {
           {loading ? (
             <Grid item>
               <CircularProgress />
+              <Typography>Data sedang dimuat..</Typography>
             </Grid>
           ) : (
             datas?.map((data, i) => (

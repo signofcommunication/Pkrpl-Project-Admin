@@ -36,7 +36,7 @@ export default function BasicModal({ handleClose, open }) {
           </Typography>
           <div
             style={{
-              padding: "10px 0",
+              padding: "15px 0",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
