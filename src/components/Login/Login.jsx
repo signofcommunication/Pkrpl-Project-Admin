@@ -25,6 +25,10 @@ function Login() {
     }
   }
 
+  useEffect(() => {
+    document.title = "Login";
+  }, []);
+
   return (
     <>
       <div class="wrapper">
@@ -34,7 +38,7 @@ function Login() {
           </Typography>
           <TextField
             value={email}
-            onChange={e => setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
             required
             id="outlined-basic"
             label="E-mail"
@@ -43,7 +47,7 @@ function Login() {
           <br />
           <TextField
             value={password}
-            onChange={e => setPassword(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)}
             id="outlined-basic"
             label="Password"
             variant="outlined"

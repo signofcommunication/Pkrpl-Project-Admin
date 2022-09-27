@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 
-export default function MediaCard({ title, price, image, link, handleOpen }) {
+export default function MediaCard({ title, price, image, link }) {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
@@ -35,14 +35,6 @@ export default function MediaCard({ title, price, image, link, handleOpen }) {
             Detail
           </Button>
         </Link>
-        <Button
-          size="small"
-          variant="contained"
-          color="error"
-          onClick={handleOpen}
-        >
-          Delete
-        </Button>
       </CardActions>
     </Card>
   );

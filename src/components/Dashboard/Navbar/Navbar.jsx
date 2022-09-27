@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import {
   AppBar,
   Box,
@@ -9,10 +9,13 @@ import {
   MenuItem,
   Menu,
 } from "@mui/material";
+import { useProvider } from "../../../utils/FirebaseProvider";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 
 function Navbar() {
   const [anchorEl, setAnchorEl] = useState(null);
+  const { logout } = useProvider();
+  const navigate = useNavigate();
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -21,6 +24,10 @@ function Navbar() {
   const handleCloser = () => {
     setAnchorEl(null);
   };
+
+  async function handleLogout() {
+    await logout();
+  }
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -63,7 +70,7 @@ function Navbar() {
                   Add Product
                 </Link>
               </MenuItem>
-              <MenuItem>Logout</MenuItem>
+              <MenuItem onClick={handleLogout}>Logout</MenuItem>
             </Menu>
           </div>
         </Toolbar>

@@ -1,4 +1,3 @@
-import { useProvider } from "../../../utils/FirebaseProvider";
 import {
   Paper,
   TextField,
@@ -7,8 +6,9 @@ import {
   Typography,
   Grid,
 } from "@mui/material";
+import { useProvider } from "../../../utils/FirebaseProvider";
 import { ToastContainer, toast } from "react-toastify";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar/Navbar";
 import axios from "axios";
@@ -40,6 +40,10 @@ function Post() {
       console.log(error);
     }
   }
+
+  useEffect(() => {
+    document.title = "Upload a product";
+  }, []);
 
   return (
     <>

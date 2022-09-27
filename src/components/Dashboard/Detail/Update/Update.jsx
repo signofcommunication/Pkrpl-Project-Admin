@@ -32,9 +32,13 @@ function Update() {
     getProduct();
   }, [productId]);
 
+  useEffect(() => {
+    document.title = `Update ${title || "Product"}`;
+  }, [title]);
+
   async function getProduct() {
     const res = await getSingleProduct(productId);
-    // const images = res.
+
     setData(res.data.product);
     setTitle(res?.data.product.title);
     setPrice(res?.data.product.price);

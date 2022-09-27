@@ -15,7 +15,6 @@ function Detail() {
   const [data, setData] = useState([]);
   const { getSingleProduct, setUpdateId } = useProvider();
   const { productId } = useParams();
-  // const price = +data.price.toLocaleString();
 
   useEffect(() => {
     async function fetchProduct() {
@@ -26,8 +25,13 @@ function Detail() {
         console.log(e);
       }
     }
+
     fetchProduct();
   }, [productId, getSingleProduct]);
+
+  useEffect(() => {
+    document.title = `${data.title || "Product"}`;
+  }, [data.title]);
 
   setUpdateId(productId);
 
@@ -56,7 +60,7 @@ function Detail() {
                 component="h5"
                 style={{ margin: "20px 0" }}
               >
-                Rp{data?.price && data?.price.toLocaleString()}
+                {data?.price && `Rp ${data?.price.toLocaleString()}`}
               </Typography>
               <Link
                 to={`/product/${productId}/edit`}

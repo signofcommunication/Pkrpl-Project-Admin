@@ -38,6 +38,10 @@ function FirebaseProvider({ children }) {
     await deleteProd(id);
   }
 
+  async function logout() {
+    return signOut(auth);
+  }
+
   const value = {
     login,
     user,
@@ -49,6 +53,7 @@ function FirebaseProvider({ children }) {
     setUpdateId,
     updateProduct,
     deleteProduct,
+    logout,
   };
 
   useEffect(() => {
@@ -65,6 +70,9 @@ function FirebaseProvider({ children }) {
 
 function useProvider() {
   const auth = useContext(FirebaseContext);
+  // localStorage.setItem("isAuthenticated", auth.user != null);
+  // const getAuth = localStorage.getItem("isAuthenticated");
+
   return { ...auth, isAuthenticated: auth.user != null };
 }
 
