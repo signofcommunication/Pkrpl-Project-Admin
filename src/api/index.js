@@ -14,4 +14,8 @@ async function updateProduct(id, updatedData) {
   return axios.patch(`${url}/${id}`, updatedData);
 }
 
-export { getSingleProduct, getAllProducts, updateProduct };
+async function deleteProduct(id) {
+  return axios.delete(`${url}/${id}`);
+}
+
+export { getSingleProduct, getAllProducts, updateProduct, deleteProduct };

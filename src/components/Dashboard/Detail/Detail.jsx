@@ -45,7 +45,7 @@ function Detail() {
             style={{ margin: "10px 0" }}
           >
             <Grid item md={6}>
-              <Image src={data?.images} />
+              {data.images && <Image src={data?.images[0]} />}
             </Grid>
             <Grid item md={6}>
               <Typography variant="h2" component="h2">

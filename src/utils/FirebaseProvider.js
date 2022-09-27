@@ -9,6 +9,7 @@ import { app } from "./firebase";
 import {
   getSingleProduct as singleProduct,
   updateProduct as updateProd,
+  deleteProduct as deleteProd,
 } from "../api";
 
 const FirebaseContext = createContext();
@@ -33,6 +34,10 @@ function FirebaseProvider({ children }) {
     await updateProd(id, data);
   }
 
+  async function deleteProduct(id) {
+    await deleteProd(id);
+  }
+
   const value = {
     login,
     user,
@@ -43,6 +48,7 @@ function FirebaseProvider({ children }) {
     updateId,
     setUpdateId,
     updateProduct,
+    deleteProduct,
   };
 
   useEffect(() => {
