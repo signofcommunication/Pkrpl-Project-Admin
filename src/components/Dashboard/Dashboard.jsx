@@ -3,10 +3,12 @@ import { useState, useEffect } from "react";
 import { useProvider } from "../../utils/FirebaseProvider";
 import Navbar from "./Navbar/Navbar";
 import Card from "./Card/Card";
+import Modal from "./Home/Modal";
 import axios from "axios";
 import "../styles/Dashboard/styles";
 
 function Dashboard() {
+  const [open, setOpen] = useState(false);
   const [datas, setDatas] = useState([]);
   const [d, setD] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -27,6 +29,9 @@ function Dashboard() {
       console.log(e);
     }
   }
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   useEffect(() => {
     getAllData();
@@ -58,10 +63,12 @@ function Dashboard() {
                   price={+data.price}
                   image={data.images[0]}
                   link={data._id}
+                  handleOpen={handleOpen}
                 />
               </Grid>
             ))
           )}
+          <Modal handleClose={handleClose} open={open} />
         </Grid>
       </Container>
     </>
