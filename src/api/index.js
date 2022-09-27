@@ -18,4 +18,14 @@ async function deleteProduct(id) {
   return axios.delete(`${url}/${id}`);
 }
 
-export { getSingleProduct, getAllProducts, updateProduct, deleteProduct };
+async function createProduct(data) {
+  return axios.post(`${url}`, data);
+}
+
+export {
+  createProduct,
+  getSingleProduct,
+  getAllProducts,
+  updateProduct,
+  deleteProduct,
+};
