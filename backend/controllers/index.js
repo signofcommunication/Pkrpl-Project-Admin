@@ -17,14 +17,14 @@ async function getSingleProduct(req, res) {
     const product = await Store.findOne({ _id: id });
 
     if (!product) {
-      res
+      return res
         .status(StatusCodes.NOT_FOUND)
         .json({ message: `There is no product with id ${id}` });
     }
 
-    res.status(StatusCodes.OK).json({ product });
+    return res.status(StatusCodes.OK).json({ product });
   } catch (e) {
-    res.StatusCodes(StatusCodes.BAD_REQUEST).json({ message: e.message });
+    return res.status(StatusCodes.BAD_REQUEST).json({ message: e.message });
   }
 }
 

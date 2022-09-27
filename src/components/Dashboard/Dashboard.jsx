@@ -19,11 +19,11 @@ function Dashboard() {
       const {
         data: { products },
       } = await axios.get("http://localhost:8000/products");
-      const { data: product } = await getSingleProduct(
-        "6321c0750452f286223efac9"
-      );
+      // const { data: product } = await getSingleProduct(
+      //   "6321c0750452f286223efac9"
+      // );
       setDatas(products);
-      setD(product);
+      // setD(product);
       setLoading(false);
     } catch (e) {
       console.log(e);
@@ -37,7 +37,7 @@ function Dashboard() {
     getAllData();
   }, []);
 
-  console.log({ datas, d });
+  console.log({ datas });
 
   return (
     <>
