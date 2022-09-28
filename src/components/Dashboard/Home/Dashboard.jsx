@@ -9,23 +9,24 @@ import "../../styles/Dashboard/styles";
 function Dashboard() {
   const [datas, setDatas] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  async function getAllData() {
-    try {
-      const {
-        data: { products },
-      } = await axios.get("http://localhost:8000/products");
-
-      setDatas(products);
-      setLoading(false);
-    } catch (e) {
-      console.log(e);
-    }
-  }
+  const { getAllProducts } = useProvider();
 
   useEffect(() => {
-    getAllData();
     document.title = "Dashboard";
+    async function getAllData() {
+      try {
+        const {
+          data: { products },
+        } = await axios.get("http://localhost:8000/products");
+
+        setDatas(products);
+        setLoading(false);
+      } catch (e) {
+        console.log(e);
+      }
+    }
+
+    getAllData();
   }, []);
 
   console.log({ datas });

@@ -27,6 +27,7 @@ function Navbar() {
 
   async function handleLogout() {
     await logout();
+    navigate("/login");
   }
 
   return (

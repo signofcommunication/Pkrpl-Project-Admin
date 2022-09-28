@@ -7,7 +7,7 @@ import "../styles/Login/styles";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { login } = useProvider();
+  const { login, user } = useProvider();
   const navigate = useNavigate();
 
   async function submitForm(e) {

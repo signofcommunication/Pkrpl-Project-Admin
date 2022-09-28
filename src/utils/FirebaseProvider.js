@@ -10,6 +10,7 @@ import {
   getSingleProduct as singleProduct,
   updateProduct as updateProd,
   deleteProduct as deleteProd,
+  getAllProducts as getAllProd,
 } from "../api";
 
 const FirebaseContext = createContext();
@@ -27,6 +28,11 @@ function FirebaseProvider({ children }) {
 
   async function getSingleProduct(id) {
     const data = await singleProduct(id);
+    return data;
+  }
+
+  async function getAllProducts() {
+    const data = await getAllProducts();
     return data;
   }
 
@@ -54,6 +60,7 @@ function FirebaseProvider({ children }) {
     updateProduct,
     deleteProduct,
     logout,
+    getAllProducts,
   };
 
   useEffect(() => {
@@ -70,8 +77,6 @@ function FirebaseProvider({ children }) {
 
 function useProvider() {
   const auth = useContext(FirebaseContext);
-  // localStorage.setItem("isAuthenticated", auth.user != null);
-  // const getAuth = localStorage.getItem("isAuthenticated");
 
   return { ...auth, isAuthenticated: auth.user != null };
 }
