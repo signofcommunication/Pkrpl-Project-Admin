@@ -38,7 +38,7 @@ function Navbar() {
           {/* <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Nica-Store Dashboard
           </Typography> */}
-          <img style={{ display: "flex", flexGrow: 1 }} src={logo} alt="logo" />
+          <img style={{ display: "flex" }} src={logo} alt="logo" />
           <div>
             <IconButton
               size="large"
