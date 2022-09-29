@@ -1,14 +1,15 @@
 import { useNavigate, Link } from "react-router-dom";
 import { ArrowBack } from "@mui/icons-material";
 import { AppBar, Box, Toolbar, IconButton, Button } from "@mui/material";
-import axios from "axios";
+import { useProvider } from "../../../utils/FirebaseProvider";
 
 function Navbar({ id }) {
+  const { deleteProduct } = useProvider();
   const navigate = useNavigate();
 
-  async function deleteProduct() {
+  async function handleDelete() {
     try {
-      await axios.delete(`http://localhost:8000/products/${id}`);
+      await deleteProduct(id);
       alert("Product deleted successfully");
       navigate("/");
     } catch (e) {
@@ -25,7 +26,7 @@ function Navbar({ id }) {
               <ArrowBack />
             </IconButton>
           </Link>
-          <Button color="error" variant="contained" onClick={deleteProduct}>
+          <Button color="error" variant="contained" onClick={handleDelete}>
             Delete
           </Button>
         </Toolbar>

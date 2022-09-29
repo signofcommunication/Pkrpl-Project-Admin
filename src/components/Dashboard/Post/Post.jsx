@@ -20,7 +20,8 @@ function Post() {
   const [price, setPrice] = useState();
   const [title, setTitle] = useState("");
   const [categories, setCategories] = useState("");
-  const { setImagesCollection, imagesCollection } = useProvider();
+  const { setImagesCollection, imagesCollection, createProduct } =
+    useProvider();
   const navigate = useNavigate();
   const notify = (txt) => toast(txt);
 
@@ -28,7 +29,7 @@ function Post() {
     try {
       const data = imagesCollection.map((i) => i.base64);
       console.log(data);
-      axios.post("http://localhost:8000/products", {
+      await createProduct({
         title,
         price: +price,
         categories,

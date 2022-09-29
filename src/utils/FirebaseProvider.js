@@ -6,12 +6,7 @@ import {
 } from "firebase/auth";
 import { createContext, useContext, useState, useEffect } from "react";
 import { app } from "./firebase";
-import {
-  getSingleProduct as singleProduct,
-  updateProduct as updateProd,
-  deleteProduct as deleteProd,
-  getAllProducts as getAllProd,
-} from "../api";
+import axios from "axios";
 
 const FirebaseContext = createContext();
 
@@ -21,27 +16,30 @@ function FirebaseProvider({ children }) {
   const [updateId, setUpdateId] = useState();
   const [imagesCollection, setImagesCollection] = useState([]);
   const auth = getAuth();
+  const url = "http://localhost:8000/products";
 
   function login(email, password) {
     return signInWithEmailAndPassword(auth, email, password);
   }
 
-  async function getSingleProduct(id) {
-    const data = await singleProduct(id);
-    return data;
+  function getSingleProduct(id) {
+    return axios.get(`${url}/${id}`);
   }
 
-  async function getAllProducts() {
-    const data = await getAllProducts();
-    return data;
+  function getAllProducts() {
+    return axios.get(`${url}`);
   }
 
-  async function updateProduct(id, data) {
-    await updateProd(id, data);
+  function updateProduct(id, updatedData) {
+    return axios.patch(`${url}/${id}`, updatedData);
   }
 
-  async function deleteProduct(id) {
-    await deleteProd(id);
+  function deleteProduct(id) {
+    return axios.delete(`${url}/${id}`);
+  }
+
+  function createProduct(data) {
+    return axios.post(`${url}`, data);
   }
 
   async function logout() {
@@ -61,6 +59,7 @@ function FirebaseProvider({ children }) {
     deleteProduct,
     logout,
     getAllProducts,
+    createProduct,
   };
 
   useEffect(() => {

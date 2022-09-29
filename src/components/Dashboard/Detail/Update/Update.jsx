@@ -45,16 +45,22 @@ function Update() {
     setCategories(res?.data.product.categories);
   }
 
-  function handleUpload() {
-    const data = imagesCollection.map((i) => i.base64);
-    axios.patch(`http://localhost:8000/products/${productId}`, {
-      title,
-      price: parseInt(price),
-      categories,
-      images: data,
-    });
-    alert(`Product Updated with id:${productId} was updated successfully`);
-    navigate(`/product/${productId}`);
+  async function handleUpload() {
+    try {
+      const data = imagesCollection.map((i) => i.base64);
+
+      await updateProduct(productId, {
+        title,
+        price: parseInt(price),
+        categories,
+        images: data,
+      });
+
+      alert(`Product Updated with id:${productId} was updated successfully`);
+      navigate(`/product/${productId}`);
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   console.log(data);

@@ -17,7 +17,7 @@ function Dashboard() {
       try {
         const {
           data: { products },
-        } = await axios.get("http://localhost:8000/products");
+        } = await getAllProducts();
 
         setDatas(products);
         setLoading(false);
