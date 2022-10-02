@@ -13,6 +13,7 @@ import Image from "material-ui-image";
 
 function Detail() {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
   const { getSingleProduct, setUpdateId } = useProvider();
   const { productId } = useParams();
 
@@ -21,6 +22,7 @@ function Detail() {
       try {
         const res = await getSingleProduct(productId);
         setData(res.data.product);
+        setLoading(false);
       } catch (e) {
         console.log(e);
       }
@@ -40,7 +42,14 @@ function Detail() {
   return (
     <Fragment>
       <Navbar id={productId} />
-      {data ? (
+      {loading ? (
+        <Grid container justify="center">
+          <Grid item align="center" style={{ margin: "20px auto" }}>
+            <CircularProgress />
+            <Typography>Getting the Detail</Typography>
+          </Grid>
+        </Grid>
+      ) : (
         <Container maxwidth="sm">
           <Grid
             container
@@ -71,8 +80,6 @@ function Detail() {
             </Grid>
           </Grid>
         </Container>
-      ) : (
-        <CircularProgress />
       )}
     </Fragment>
   );

@@ -12,7 +12,6 @@ import {
 } from "@mui/material";
 import FileBase64 from "react-file-base64";
 import Navbar from "./Navbar";
-import axios from "axios";
 
 function Update() {
   const [price, setPrice] = useState();
@@ -38,10 +37,12 @@ function Update() {
 
   async function getProduct() {
     const res = await getSingleProduct(productId);
+    const listImages = res?.data.product.images.map((image) => image);
 
     setData(res.data.product);
     setTitle(res?.data.product.title);
     setPrice(res?.data.product.price);
+    setImagesCollection(listImages);
     setCategories(res?.data.product.categories);
   }
 

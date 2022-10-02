@@ -1,7 +1,6 @@
 import { Grid, Container, CircularProgress, Typography } from "@mui/material";
 import { useState, useEffect } from "react";
 import { useProvider } from "../../../utils/FirebaseProvider";
-import axios from "axios";
 import Navbar from "../Navbar/Navbar";
 import Card from "../Card/Card";
 import "../../styles/Dashboard/styles";
@@ -29,7 +28,7 @@ function Dashboard() {
     getAllData();
   }, []);
 
-  console.log({ datas });
+  console.log({ datas, empty: !loading && datas.length == 0 });
 
   return (
     <>
@@ -44,7 +43,7 @@ function Dashboard() {
           style={{ margin: "10px 0" }}
         >
           {loading ? (
-            <Grid item>
+            <Grid item align="center" style={{ margin: "auto" }}>
               <CircularProgress />
               <Typography>Data sedang dimuat..</Typography>
             </Grid>
