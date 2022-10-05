@@ -11,9 +11,8 @@ import { ToastContainer, toast } from "react-toastify";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar/Navbar";
-import axios from "axios";
 import FileBase64 from "react-file-base64";
-import "../../styles/Form/styles";
+import styles from "./Post.module.css";
 import "react-toastify/dist/ReactToastify.css";
 
 function Post() {
@@ -23,22 +22,19 @@ function Post() {
   const { setImagesCollection, imagesCollection, createProduct } =
     useProvider();
   const navigate = useNavigate();
-  const notify = (txt) => toast(txt);
 
   async function handleUpload() {
     try {
       const data = imagesCollection.map((i) => i.base64);
-      console.log(data);
       await createProduct({
         title,
         price: +price,
         categories,
         images: data,
       });
-      notify("Document Uploaded Successfully");
       navigate("/");
     } catch (error) {
-      console.log(error);
+      toast.error(error.message);
     }
   }
 
@@ -59,13 +55,13 @@ function Post() {
           style={{ height: "100%", margin: "10px 0" }}
         >
           <Grid item md={6}>
-            <Paper variant="outlined" square className="paper-container">
+            <Paper variant="outlined" square className={styles.paper_container}>
               <form>
                 <Typography
                   variant="h5"
                   component="h1"
                   gutterBottom
-                  className="text"
+                  className={styles.text}
                 >
                   Upload a product
                 </Typography>
@@ -96,7 +92,12 @@ function Post() {
               </form>
             </Paper>
           </Grid>
-          <Grid item md={6} className="upload-image" style={{ height: "64vh" }}>
+          <Grid
+            item
+            md={6}
+            className={styles.upload_image}
+            style={{ height: "64vh" }}
+          >
             <FileBase64
               type="file"
               multiple={true}

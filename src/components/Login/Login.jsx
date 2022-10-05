@@ -2,13 +2,16 @@ import { TextField, Button, Typography } from "@mui/material";
 import { useProvider } from "../../utils/FirebaseProvider";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../styles/Login/styles";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import styles from "./Login.module.css";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { login, user } = useProvider();
+  const { login } = useProvider();
   const navigate = useNavigate();
+  const warn = (txt) => toast.error(txt);
 
   async function submitForm(e) {
     e.preventDefault();
@@ -18,10 +21,10 @@ function Login() {
       alert("Login Success");
       navigate("/");
     } catch (e) {
-      if (e.code === "auth/invalid-email") alert("Please use proper email!");
+      if (e.code === "auth/invalid-email") warn("Please use proper email!");
       if (e.code === "auth/user-not-found")
-        alert("Sorry, Only admin can login!");
-      if (e.code === "auth/wrong-password") alert("Wrong Password!");
+        warn("Sorry, Only admin can login!");
+      if (e.code === "auth/wrong-password") warn("Wrong Password!");
     }
   }
 
@@ -31,9 +34,10 @@ function Login() {
 
   return (
     <>
-      <div class="wrapper">
-        <form class="form-signin" onSubmit={submitForm}>
-          <Typography variant="h4" className="form-signin-heading">
+      <div className={styles.wrapper}>
+        <ToastContainer />
+        <form className={styles.form_signin} onSubmit={submitForm}>
+          <Typography variant="h4" className={styles.form_signin_heading}>
             Login
           </Typography>
           <TextField

@@ -14,6 +14,7 @@ function FirebaseProvider({ children }) {
   const [user, setUser] = useState();
   const [error, setError] = useState();
   const [updateId, setUpdateId] = useState();
+  const [imagesList, setImagesList] = useState(null);
   const [imagesCollection, setImagesCollection] = useState([]);
   const auth = getAuth();
   const url = "http://localhost:8000/products";
@@ -60,6 +61,8 @@ function FirebaseProvider({ children }) {
     logout,
     getAllProducts,
     createProduct,
+    setImagesList,
+    imagesList,
   };
 
   useEffect(() => {

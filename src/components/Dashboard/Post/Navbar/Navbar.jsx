@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Link } from "react-router-dom";
 import { AppBar, Box, Toolbar, IconButton } from "@mui/material";
 import { ArrowBack } from "@mui/icons-material";

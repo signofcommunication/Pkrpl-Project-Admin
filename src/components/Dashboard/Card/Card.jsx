@@ -1,4 +1,3 @@
-import * as React from "react";
 import {
   Card,
   CardActions,
@@ -16,7 +15,7 @@ export default function MediaCard({ title, price, image, link }) {
         component="img"
         height="140"
         image={image}
-        alt="green iguana"
+        alt={`${title} image`}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">

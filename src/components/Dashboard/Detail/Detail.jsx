@@ -10,6 +10,8 @@ import {
 } from "@mui/material";
 import Navbar from "./Navbar";
 import Image from "material-ui-image";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Detail() {
   const [data, setData] = useState([]);
@@ -24,7 +26,7 @@ function Detail() {
         setData(res.data.product);
         setLoading(false);
       } catch (e) {
-        console.log(e);
+        toast.error(e.message);
       }
     }
 
@@ -37,10 +39,9 @@ function Detail() {
 
   setUpdateId(productId);
 
-  console.log(data);
-
   return (
     <Fragment>
+      <ToastContainer />
       <Navbar id={productId} />
       {loading ? (
         <Grid container justify="center">

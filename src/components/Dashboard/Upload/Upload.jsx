@@ -1,23 +1,24 @@
 import { useProvider } from "../../../utils/FirebaseProvider";
-import React from "react";
+import { useState } from "react";
 import ImageUploading from "react-images-uploading";
 
 export default function Upload() {
-  const [images, setImages] = React.useState([]);
-  const { setImagesCollection } = useProvider();
+  const [images, setImages] = useState([]);
+  const { imagesCollection, setImagesCollection, setImagesList, imagesList } =
+    useProvider();
   const maxNumber = 69;
 
   const onChange = (imageList, addUpdateIndex) => {
     setImages(imageList);
-    const res = imageList.map(i => i.data_url);
-    setImagesCollection(res);
+    const listImages = imageList.map((i) => i["data_url"]);
+    setImagesList(listImages);
   };
 
   return (
     <div className="App">
       <ImageUploading
         multiple
-        value={images}
+        value={imagesList}
         onChange={onChange}
         maxNumber={maxNumber}
         dataURLKey="data_url"

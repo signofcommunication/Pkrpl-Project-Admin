@@ -1,9 +1,11 @@
 import { Grid, Container, CircularProgress, Typography } from "@mui/material";
 import { useState, useEffect } from "react";
 import { useProvider } from "../../../utils/FirebaseProvider";
+import { ToastContainer, toast } from "react-toastify";
 import Navbar from "../Navbar/Navbar";
 import Card from "../Card/Card";
-import "../../styles/Dashboard/styles";
+import "react-toastify/dist/ReactToastify.css";
+import "./Dashboard.module.css";
 
 function Dashboard() {
   const [datas, setDatas] = useState([]);
@@ -21,18 +23,17 @@ function Dashboard() {
         setDatas(products);
         setLoading(false);
       } catch (e) {
-        console.log(e);
+        toast.error(e.message);
       }
     }
 
     getAllData();
   }, []);
 
-  console.log({ datas, empty: !loading && datas.length == 0 });
-
   return (
     <>
       <Navbar />
+      <ToastContainer />
       <Container>
         <Grid
           container

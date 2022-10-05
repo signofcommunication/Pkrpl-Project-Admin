@@ -10,8 +10,11 @@ import {
   Grid,
   CircularProgress,
 } from "@mui/material";
-import FileBase64 from "react-file-base64";
+import { ToastContainer, toast } from "react-toastify";
 import Navbar from "./Navbar";
+import Upload from "../../Upload/Upload";
+import styles from "../../Post/Post.module.css";
+import "react-toastify/dist/ReactToastify.css";
 
 function Update() {
   const [price, setPrice] = useState();
@@ -20,9 +23,10 @@ function Update() {
   const [data, setData] = useState([]);
   const {
     getSingleProduct,
-    setImagesCollection,
     updateProduct,
     imagesCollection,
+    setImagesList,
+    imagesList,
   } = useProvider();
   const { productId } = useParams();
   const navigate = useNavigate();
@@ -37,38 +41,36 @@ function Update() {
 
   async function getProduct() {
     const res = await getSingleProduct(productId);
-    const listImages = res?.data.product.images.map((image) => image);
 
     setData(res.data.product);
-    setTitle(res?.data.product.title);
-    setPrice(res?.data.product.price);
-    setImagesCollection(listImages);
-    setCategories(res?.data.product.categories);
+    setTitle(res.data.product.title);
+    setPrice(res.data.product.price);
+    setImagesList(res.data.product.images);
+    setCategories(res.data.product.categories);
   }
 
   async function handleUpload() {
     try {
-      const data = imagesCollection.map((i) => i.base64);
+      const dataImages = imagesList.map((i) => i);
 
       await updateProduct(productId, {
         title,
         price: parseInt(price),
         categories,
-        images: data,
+        images: dataImages,
       });
 
       alert(`Product Updated with id:${productId} was updated successfully`);
       navigate(`/product/${productId}`);
     } catch (e) {
-      console.log(e);
+      toast.error(e.message);
     }
   }
-
-  console.log(data);
 
   return (
     <>
       <Navbar />
+      <ToastContainer />
       {data ? (
         <Container>
           <Grid
@@ -79,13 +81,17 @@ function Update() {
             style={{ height: "100%", margin: "10px 0" }}
           >
             <Grid item md={6}>
-              <Paper variant="outlined" square className="paper-container">
+              <Paper
+                variant="outlined"
+                square
+                className={styles.paper_container}
+              >
                 <form>
                   <Typography
                     variant="h5"
                     component="h1"
                     gutterBottom
-                    className="text"
+                    className={styles.text}
                   >
                     Update a product
                   </Typography>
@@ -119,14 +125,10 @@ function Update() {
             <Grid
               item
               md={6}
-              className="upload-image"
+              className={styles.upload_image}
               style={{ height: "64vh" }}
             >
-              <FileBase64
-                type="file"
-                multiple={true}
-                onDone={(base64) => setImagesCollection(base64)}
-              />
+              <Upload />
             </Grid>
           </Grid>
         </Container>
