@@ -19,6 +19,7 @@ function Login() {
     try {
       await login(email, password);
       alert("Login Success");
+      localStorage.setItem("isAuthenticated", true);
       navigate("/");
     } catch (e) {
       if (e.code === "auth/invalid-email") warn("Please use proper email!");

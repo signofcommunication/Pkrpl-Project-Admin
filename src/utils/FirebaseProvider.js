@@ -67,6 +67,7 @@ function FirebaseProvider({ children }) {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(getAuth(), setUser, setError);
+    localStorage.setItem("isAuthenticated", false);
     return () => unsubscribe();
   }, []);
 
@@ -80,7 +81,7 @@ function FirebaseProvider({ children }) {
 function useProvider() {
   const auth = useContext(FirebaseContext);
 
-  return { ...auth, isAuthenticated: auth.user != null };
+  return { ...auth };
 }
 
 export { useProvider, FirebaseProvider };

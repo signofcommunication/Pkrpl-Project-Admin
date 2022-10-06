@@ -28,6 +28,7 @@ function Navbar() {
 
   async function handleLogout() {
     await logout();
+    localStorage.setItem("isAuthenticated", false);
     navigate("/login");
   }
 

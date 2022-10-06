@@ -1,8 +1,8 @@
-import { useProvider } from "../../utils/FirebaseProvider";
 import { Navigate, Outlet } from "react-router-dom";
 
 function Private() {
-  const { isAuthenticated } = useProvider();
+  const isAuthenticated =
+    localStorage.getItem("isAuthenticated") === "false" ? false : true;
 
   return isAuthenticated ? <Outlet /> : <Navigate to="/login" />;
 }
