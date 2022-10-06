@@ -4,8 +4,8 @@ import {
   AppBar,
   Box,
   Toolbar,
-  Typography,
   IconButton,
+  Typography,
   MenuItem,
   Menu,
 } from "@mui/material";
@@ -36,10 +36,9 @@ function Navbar() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          {/* <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Nica-Store Dashboard
-          </Typography> */}
-          <img style={{ display: "flex" }} src={logo} alt="logo" />
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            <img src={logo} alt="logo" />
+          </Typography>
           <div>
             <IconButton
               size="large"
