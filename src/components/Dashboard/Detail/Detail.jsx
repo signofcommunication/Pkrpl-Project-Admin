@@ -1,4 +1,5 @@
 import { useEffect, useState, Fragment } from "react";
+import styles from "./Detail.module.css";
 import { Link, useParams } from "react-router-dom";
 import { useProvider } from "../../../utils/FirebaseProvider";
 import {
@@ -60,6 +61,12 @@ function Detail() {
           >
             <Grid item md={6}>
               {data.images && <Image src={data?.images[0]} />}
+              <div className={styles.sub_image}>
+                <div className={styles.sub_box}></div>
+                <div className={styles.sub_box}></div>
+                <div className={styles.sub_box}></div>
+                <div className={styles.sub_box}></div>
+              </div>
             </Grid>
             <Grid item md={6}>
               <Typography variant="h2" component="h2">

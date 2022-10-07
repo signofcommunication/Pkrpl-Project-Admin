@@ -1,6 +1,6 @@
 body {
   background: #eee !important;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .wrapper {
