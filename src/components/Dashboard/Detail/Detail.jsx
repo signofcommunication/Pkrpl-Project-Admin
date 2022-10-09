@@ -1,5 +1,4 @@
 import { useEffect, useState, Fragment } from "react";
-import styles from "./Detail.module.css";
 import { Link, useParams } from "react-router-dom";
 import { useProvider } from "../../../utils/FirebaseProvider";
 import {
@@ -9,14 +8,16 @@ import {
   Button,
   CircularProgress,
 } from "@mui/material";
+import { ToastContainer, toast } from "react-toastify";
 import Navbar from "./Navbar";
 import Image from "material-ui-image";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import styles from "./Detail.module.css";
 
 function Detail() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [defaultImage, setDefaultImage] = useState();
   const { getSingleProduct, setUpdateId } = useProvider();
   const { productId } = useParams();
 
@@ -25,6 +26,7 @@ function Detail() {
       try {
         const res = await getSingleProduct(productId);
         setData(res.data.product);
+        // setDefaultImage(res.data.product.images[0]);
         setLoading(false);
       } catch (e) {
         toast.error(e.message);
@@ -39,6 +41,7 @@ function Detail() {
   }, [data.title]);
 
   setUpdateId(productId);
+  console.log({ data, defaultImage });
 
   return (
     <Fragment>
@@ -60,12 +63,18 @@ function Detail() {
             style={{ margin: "10px 0" }}
           >
             <Grid item md={6}>
-              {data.images && <Image src={data?.images[0]} />}
+              <Image src={data.images[0]} />
               <div className={styles.sub_image}>
-                <div className={styles.sub_box}></div>
-                <div className={styles.sub_box}></div>
-                <div className={styles.sub_box}></div>
-                <div className={styles.sub_box}></div>
+                {data.images.map((d, i) => (
+                  <div key={i}>
+                    <img
+                      onClick={(e) => setDefaultImage(e.target.currentSrc)}
+                      className={styles.sub_box}
+                      src={d}
+                      alt="e"
+                    />
+                  </div>
+                ))}
               </div>
             </Grid>
             <Grid item md={6}>

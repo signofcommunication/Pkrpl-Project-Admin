@@ -1,0 +1,11 @@
+.sub_image{
+    display: flex;
+    padding: 10px 0;
+    justify-content: space-between;
+}
+
+.sub_box{
+    width: 10vw;
+    height: 50%;
+    /* border: 1px solid black; */
+}
