@@ -7,5 +7,8 @@
 .sub_box{
     width: 10vw;
     height: 50%;
-    /* border: 1px solid black; */
+}
+
+.sub_box:hover {
+    cursor: pointer;
 }

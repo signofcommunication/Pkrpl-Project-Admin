@@ -32,7 +32,6 @@ export default function Upload() {
           isDragging,
           dragProps,
         }) => (
-          // write your building UI
           <div className="upload__image-wrapper">
             <button
               style={isDragging ? { color: "red" } : undefined}

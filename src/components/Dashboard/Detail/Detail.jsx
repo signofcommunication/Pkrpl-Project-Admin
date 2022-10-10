@@ -26,7 +26,7 @@ function Detail() {
       try {
         const res = await getSingleProduct(productId);
         setData(res.data.product);
-        // setDefaultImage(res.data.product.images[0]);
+        setDefaultImage(res.data.product.images[0]);
         setLoading(false);
       } catch (e) {
         toast.error(e.message);
@@ -41,6 +41,7 @@ function Detail() {
   }, [data.title]);
 
   setUpdateId(productId);
+  // setDefaultImage(data.images[0]);
   console.log({ data, defaultImage });
 
   return (
@@ -63,7 +64,7 @@ function Detail() {
             style={{ margin: "10px 0" }}
           >
             <Grid item md={6}>
-              <Image src={data.images[0]} />
+              <Image src={defaultImage} />
               <div className={styles.sub_image}>
                 {data.images.map((d, i) => (
                   <div key={i}>
