@@ -17,30 +17,30 @@ function FirebaseProvider({ children }) {
   const [imagesList, setImagesList] = useState(null);
   const [imagesCollection, setImagesCollection] = useState([]);
   const auth = getAuth();
-  const url = "http://localhost:8000/products";
+  const url = process.env.REACT_APP_API;
 
   function login(email, password) {
     return signInWithEmailAndPassword(auth, email, password);
   }
 
   function getSingleProduct(id) {
-    return axios.get(`${url}/${id}`);
+    return axios.get(`${url}/products/${id}`);
   }
 
   function getAllProducts() {
-    return axios.get(`${url}`);
+    return axios.get(`${url}/products`);
   }
 
   function updateProduct(id, updatedData) {
-    return axios.patch(`${url}/${id}`, updatedData);
+    return axios.patch(`${url}/products/${id}`, updatedData);
   }
 
   function deleteProduct(id) {
-    return axios.delete(`${url}/${id}`);
+    return axios.delete(`${url}/products/${id}`);
   }
 
   function createProduct(data) {
-    return axios.post(`${url}`, data);
+    return axios.post(`${url}/products`, data);
   }
 
   async function logout() {
