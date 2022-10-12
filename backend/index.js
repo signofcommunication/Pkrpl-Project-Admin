@@ -4,6 +4,7 @@ import connectDB from "./db/connect.js";
 import routes from "./routes/routes.js";
 import bodyParser from "body-parser";
 import cors from "cors";
+import helmet from "helmet";
 
 config();
 
@@ -13,8 +14,9 @@ const PORT = process.env.PORT || 5000;
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
+app.use(helmet());
 
-app.get("/", (req, res) => res.send("Welcome to Nica Store API"));
+app.get("/", (req, res) => res.json({ message: "Welcome to Nica Store API" }));
 app.use("/products", routes);
 
 async function start() {
