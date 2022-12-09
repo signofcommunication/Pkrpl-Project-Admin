@@ -34,6 +34,9 @@ export default function MediaCard({ title, price, image, link }) {
             Detail
           </Button>
         </Link>
+        <Typography variant="body2" color="text.secondary">
+          Stock : 1
+        </Typography>
       </CardActions>
     </Card>
   );
