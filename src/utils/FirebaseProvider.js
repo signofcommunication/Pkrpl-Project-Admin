@@ -3,6 +3,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
+  createUserWithEmailAndPassword,
 } from "firebase/auth";
 import { createContext, useContext, useState, useEffect } from "react";
 import { app } from "./firebase";
@@ -21,6 +22,10 @@ function FirebaseProvider({ children }) {
 
   function login(email, password) {
     return signInWithEmailAndPassword(auth, email, password);
+  }
+
+  async function register(email, password) {
+    return createUserWithEmailAndPassword(auth, email, password);
   }
 
   function getSingleProduct(id) {
@@ -63,6 +68,7 @@ function FirebaseProvider({ children }) {
     createProduct,
     setImagesList,
     imagesList,
+    register,
   };
 
   useEffect(() => {

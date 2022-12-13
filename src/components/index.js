@@ -4,3 +4,4 @@ export { default as Private } from "./Private/Private";
 export { default as Post } from "./Dashboard/Post/Post";
 export { default as Detail } from "./Dashboard/Detail/Detail";
 export { default as Update } from "./Dashboard/Detail/Update/Update";
+export { default as Register } from "./Register/Register";

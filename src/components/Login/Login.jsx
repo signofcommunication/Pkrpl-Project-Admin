@@ -63,6 +63,13 @@ function Login() {
           <Button variant="contained" type="submit">
             Login
           </Button>
+          <Button
+            variant="outlined"
+            onClick={() => navigate("/register")}
+            style={{ margin: "10px 0" }}
+          >
+            Register
+          </Button>
         </form>
       </div>
     </>
